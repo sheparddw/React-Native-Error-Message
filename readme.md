@@ -1,5 +1,5 @@
 # React Native Error Message
-This error message slides up to the bottom of the screen, waits for a time, then slides back off the screen.
+This error message is meant to be simple and easy to understand. The message slides up to the bottom of the screen, waits for a time, then slides back off the screen.
 
 To use this component, clone this repo within your React Native project then import and use it as the last child of your root view. You can pass several props to it for customization.
 
