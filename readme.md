@@ -30,5 +30,7 @@ Within your root view's render function:
 ```
 Note that the ErrorMessage must be the last component within the root view to display on top of other components properly.
 The Position is absolute by default, so it should not disrupt other component styling.
+
 This is only tested on iOS.
+
 Feel free to contribute to this component.
