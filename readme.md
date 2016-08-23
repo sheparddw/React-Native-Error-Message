@@ -31,6 +31,41 @@ Within your root view's render function:
 Note that the ErrorMessage must be the last component within the root view to display on top of other components properly.
 The Position is absolute by default, so it should not disrupt other component styling.
 
-This is only tested on iOS.
+I recommend using this with a state container such as [Redux](https://github.com/reactjs/redux). You can then neatly create an errorReducer that globally receives any error actions within your Action Creator and displays them. You can translate any error messages to be more user friendly before passing them to this component.
+
+Example use of [Redux's](https://github.com/reactjs/redux) connect functionality for bottom of root view file:
+```
+App.propTypes = {
+  error: React.PropTypes.object,
+};
+
+function mapStateToProps(store) {
+  return {
+    error: store.errorReducer.error,
+  };
+}
+
+module.exports = connect(mapStateToProps)(App);
+```
+Example Action Creator (using [redux-promise](https://github.com/acdlite/redux-promise) for async within Action Creators):
+```
+async function getMyData(clearCache = false) {
+  const api = new Api;
+  try {
+    const results = await api.getMyData(clearCache);
+    return {
+      type: GET_MY_DATA,
+      results,
+    };
+  } catch (err) {
+    return {
+      type: ADD_ERROR,
+      error: err,
+    }
+  }
+}
+```
+
+This component is only tested on iOS but should work with other platforms as well.
 
 Feel free to contribute to this component.
