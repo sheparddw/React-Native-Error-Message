@@ -28,11 +28,13 @@ class ErrorMessage extends Component {
     this.displayDuration = this.props.displayDuration || 6000;
     this.animationDuration = this.props.animationDuration || 500;
     this.windowHeight = Dimensions.get('window').height;
+    return this.showMessage();
   }
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps(nextProps) {
     // Show message each time new props are given.
-    return this.showMessage();
+    this.showMessage();
+    return nextProps;
   }
 
   getTranslateProperties() {
